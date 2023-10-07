@@ -1,9 +1,9 @@
 /**********************************************************************/
 /*  PROYECTO FIGURAS              */
-/*  EQUIPO XXXX                 */
+/*  EQUIPO PORTUGAL                 */
+
 
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
 
@@ -14,7 +14,7 @@
   --color-fondo: hsl(69, 42%, 94%);
   --color-primario: hsl(0, 0%, 0%);
   --color-sobre-primario: hsl(2, 100%, 100%);
-  --color-secundario: hsl(2, 50%, 102%);
+  --color-secundario: hsl(2, 50%, 100%);
   --color-sobre-secundario: hsl(2, 0%, 0%);
 
   /* Concretar el diseño tipográfico con fuentes no generalistas */
@@ -28,10 +28,12 @@
 
 /**********************************************************************/
 
+
 .area {
-  height: 100vh;
+  height:100vh;
   background-color: var(--color-fondo);
   font-family: var(--fuente-primaria);
+  min-width: 400px; /*limitar la anchura*/
 }
 
 /**********************************************************************/
@@ -52,7 +54,7 @@
 /**********************************************************************/
 
 .panel {
-  width: clamp(300px, 60%, 600px);
+  width: clamp(300px, 70%,  600px);
   margin: 1.5rem auto;
   border: 1px solid black;
 }
@@ -62,17 +64,16 @@
 .panel__patron {
   /* El estilo del borde cambiará dinámicamente con JS 
      para ilustrar cuando una figura entra en el panel del patrón  */
-  border: 1px solid var(--color-primario);
-
-  height: 180px;
-  width: 100%;
-  text-align: center; /* Centrar horizontalmente */
-
+  
   /* Centrado vertical */
-  display: inline-block;
-  position: relative;
-  padding-top: 20px;
-  border-bottom: none;  /*quitar el borde de abajo*/
+  display: block;
+  padding: 5px;
+  margin: 1rem auto; /* Centrar horizontalmente */
+  border: 1px solid hsl(0, 0%, 0%);
+  width: clamp(var(--longitud-muestra), 100%,  var(--longitud-muestra)); /**/
+
+
+ 
 }
 
 
@@ -81,18 +82,19 @@
 
 .panel__alternativas {
   /* Las figuras se enmarcan para identificarlas como un grupo */
-  border: 1px solid var(--color-primario);
-  border-top: none;   /*quitar el borde de arriba*/
-  height: 180px; /* Altura deseada para el panel */
   width: 100%;
+  height:calc(var(--longitud-muestra)*1.5);
+
+  /* ======= COMPLETAR REGLA ====== */
+  /* Las figuras del panel se muestran centradas */
   text-align: center; /* Centrado horizontal */
 
   /* Centrado vertical */
   display: inline-block;
-  position: relative;
-  
-  /* ======= COMPLETAR REGLA ====== */
-  /* Las figuras del panel se muestran centradas */
+
+  /*Padding-top*/
+  padding-top: 1.5rem;
+
 }
 
 
@@ -109,16 +111,17 @@
        - Las figuras son definidas en HTML mediante elementos span
        - La dimensión se define en base a --logitud-muestra  */
        display: inline-block; /* Cambia a inline-block para que las figuras estén en línea horizontalmente */
-       margin: 5px;
+       cursor: grab;
+
 }
 
+/*
 .figura span {
   text-align: center;
-
-  /* Centrar verticalmente */
+  /* Centrar verticalmente /
   display: inline-block;
-  position: relative
 }
+*/
 
 .panel__patron .figura {
   /* La figura del patrón se muestra ligeramente transparente 
@@ -132,14 +135,20 @@
 
 .figura--sobrevolando {
   /* ======= COMPLETAR REGLA ====== */
+    /* Estilos para el panelPatrón cuando una figura está sobrevolando */
+    border: 2px dashed hsl(0, 0%, 0%);
+    background-color: hsl(0, 0%, 100%);
 }
 
 .figura--arrastrando {
   /* ======= COMPLETAR REGLA ====== */
+  cursor: grabbing;
   transform: scale(1.2) rotate(10deg); /* Aumentar el tamaño y girar al arrastrar */
   transition: transform 0.3s; 
   
 }
+
+
 
 /**********************************************************************/
 /* Formas que pueden adoptar las figuras         */

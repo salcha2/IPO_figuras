@@ -5,7 +5,7 @@
 // El nombre será mostrada en el elemento HTML #equipo de la página web
 // Cada equipo debe actualizar la constante con su nombre de equipo
 
-const nombreDelEquipoDeLaboratorio = "XXXX";
+const nombreDelEquipoDeLaboratorio = "Portugal";
 document.getElementById("equipo").innerHTML = nombreDelEquipoDeLaboratorio;
 
 // -------------------------------------------------------
@@ -103,11 +103,16 @@ function ___dragEnd(e) {
   // si se hubiera cancelado la operación.
   // Esta función elimina de la figura el estilo de clase figura--arrastrando
   // con el objetivo de que su aspecto vuelva a ser el original
+  e.target.classList.remove("figura--arrastrando");
+
 }
 
 function ___dragEnter(e) {
   // Esta función se limita a hacer notar que la figura arrastrada entra en la zona del patrón
   // El efecto visual se consigue añadiendo al panelPatrón el estilo de clase figura--sobrevolando
+  if (e.target.id == "panelPatron") {
+    e.target.classList.add("figura--sobrevolando");
+  }
 }
 
 function dragOver(e) {
@@ -172,6 +177,12 @@ function ___modificaAspectoDelPatron(panelPatron) {
   //   usar un borde discontinuo con un color llamativo
   //   alterar el color de fondo del patrón
   //   añadir una sombra al patrón
+  panelPatron.style.border = "4px dashed red";
+  panelPatron.style.backgroundColor = "hsl(0, 100%, 100%)";
+  panelPatron.style.boxShadow = "0 0 10px hsl(0, 0, 0, 0.5)";
+  panelPatron.style.opacity = "1"
+  
+
 }
 
 //  Devuelve un elemento aerbitraio del array
